@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#153e75">
+    <title>All Pages Preview &amp; QA — Barangay San Isidro</title>
+    <link rel="stylesheet" href="prototype.css">
+    <link rel="stylesheet" href="all-pages-preview.css">
+    <script src="preview-catalog.js" defer></script>
+    <script src="all-pages-preview.js" defer></script>
+</head>
+<body>
+    <header class="catalog-header">
+        <div><p class="catalog-kicker">LOCAL DEVELOPMENT ONLY</p><h1>All Pages Preview &amp; QA</h1><p>Review every planned page, compare its legacy status, and open the mock screen directly.</p></div>
+        <nav aria-label="Preview tools"><a class="button button-secondary" href="ui-prototype.html?role=resident&amp;page=dashboard">Resident preview</a><a class="button button-secondary" href="ui-prototype.html?role=staff&amp;page=dashboard">Staff preview</a><a class="button button-secondary" href="ui-prototype.html?role=admin&amp;page=dashboard">Admin preview</a><a class="button button-primary" href="index.html">Live sign-in</a></nav>
+    </header>
+    <main class="catalog-main">
+        <aside class="catalog-warning" role="note"><strong>Preview only:</strong> all records and actions are fictional, browser-local examples. The role switcher and pages are not authentication or authorization and must not be deployed as production features.</aside>
+        <section class="summary-grid" aria-label="Page testing summary">
+            <article class="summary-card"><span>Planned pages</span><strong id="metric-total">—</strong><small>Across public and all roles</small></article>
+            <article class="summary-card"><span>Legacy screens present</span><strong id="metric-existing">—</strong><small>Existing, partial, or closed legacy screen</small></article>
+            <article class="summary-card"><span>Missing in live workflow</span><strong id="metric-missing">—</strong><small>Not available in the existing application</small></article>
+            <article class="summary-card"><span>Incomplete legacy UI</span><strong id="metric-incomplete">—</strong><small>Existing screens with workflow gaps</small></article>
+            <article class="summary-card"><span>Preview designs ready</span><strong id="metric-ready">—</strong><small>Mock page screen is available to review</small></article>
+            <article class="summary-card"><span>Responsive issues</span><strong id="metric-responsive">Not checked</strong><small>See QA checklist for current test state</small></article>
+            <article class="summary-card"><span>Broken preview routes</span><strong id="metric-broken">Checking…</strong><small>Route targets checked in this browser</small></article>
+        </section>
+        <section class="panel test-panel" aria-labelledby="test-heading">
+            <div class="panel-heading"><div><h2 id="test-heading">Page-by-page QA checklist</h2><p>Preview smoke tests were run at 320, 375, 768, 1024, and 1440 px. This checklist is for your own visual/interaction review.</p></div><button class="button button-secondary" id="reset-checklist" type="button">Reset my review checks</button></div>
+            <div class="qa-legend"><span>☐ Not reviewed by you</span><span>☑ Reviewed by you in this browser</span><span>Preview screens remain mock-only either way</span></div>
+            <div id="qa-summary" class="qa-summary" role="status"></div>
+        </section>
+        <section class="panel catalog-panel" aria-labelledby="catalog-heading">
+            <div class="panel-heading"><div><h2 id="catalog-heading">Page directory</h2><p>“Legacy status” describes the original PHP application, before these isolated mock previews.</p></div></div>
+            <div class="toolbar">
+                <div class="toolbar-start">
+                    <label class="search-field"><span class="sr-only">Search pages</span><input id="page-search" type="search" placeholder="Search page name or role"></label>
+                    <label><span class="sr-only">Filter by role</span><select id="group-filter" class="filter-select"><option value="">All roles</option><option>Public</option><option>Resident</option><option>Staff</option><option>Admin</option></select></label>
+                    <label><span class="sr-only">Filter legacy status</span><select id="legacy-filter" class="filter-select"><option value="">Any legacy status</option><option>Existing</option><option>Partial</option><option>Incomplete</option><option>Missing</option></select></label>
+                </div>
+                <span id="visible-count" class="field-hint"></span>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table catalog-table">
+                    <thead><tr><th scope="col">Role</th><th scope="col">Page</th><th scope="col">Legacy status</th><th scope="col">Preview</th><th scope="col">Responsive QA</th><th scope="col">Your review</th><th scope="col">Direct link</th></tr></thead>
+                    <tbody id="page-directory"></tbody>
+                </table>
+            </div>
+        </section>
+        <section class="panel status-key">
+            <h2>Status definitions</h2>
+            <ul>
+                <li><strong>Existing:</strong> a related screen/file is in the legacy app; this does not imply a role-specific portal or complete workflow.</li>
+                <li><strong>Partial / Incomplete:</strong> a related screen exists, but requested behavior, data workflow, or account policy is incomplete.</li>
+                <li><strong>Missing:</strong> the requested page or workflow is not implemented in the legacy PHP app. A separate mock design is provided when marked “Designed”.</li>
+                <li><strong>Designed:</strong> a sample-data UI screen can be opened locally. It is not connected to PHP authentication or MySQL.</li>
+                <li><strong>Responsive smoke checked:</strong> the page was opened at the five listed viewport widths and checked for page-level horizontal overflow. It does not certify every visual or accessibility detail.</li>
+            </ul>
+            <p><a href="README.md">Open assessment, mock-data inventory, and future UI-to-database mapping notes</a></p>
+        </section>
+    </main>
+    <div class="toast-region" id="catalog-toast" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

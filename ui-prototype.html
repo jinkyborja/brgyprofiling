@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#153e75">
+    <title>Portal UI Prototype — Barangay San Isidro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="prototype.css">
+    <script src="prototype.js" defer></script>
+</head>
+<body>
+    <div class="prototype-banner">
+        <i class="fa-solid fa-flask" aria-hidden="true"></i>
+        <span><strong>INTERACTIVE UI PROTOTYPE</strong> — names, counts, records, and actions are mock data only. Nothing here is saved to a database.</span>
+        <a href="all-pages-preview.html">All pages &amp; QA</a>
+        <a href="index.html">Return to sign in</a>
+    </div>
+    <div class="app-shell" id="app-shell">
+        <aside class="sidebar" id="sidebar" aria-label="Portal navigation">
+            <a class="brand" href="#" data-page="dashboard" aria-label="Barangay San Isidro portal home">
+                <span class="brand-mark" aria-hidden="true">SI</span>
+                <span class="brand-copy"><strong>San Isidro</strong><small>Community Portal</small></span>
+            </a>
+            <div class="role-label">PREVIEW ROLE</div>
+            <label class="sr-only" for="role-select">Preview portal role</label>
+            <select id="role-select" class="role-select">
+                <option value="resident">Resident portal</option>
+                <option value="staff">Staff portal</option>
+                <option value="admin" selected>Administrator portal</option>
+            </select>
+            <nav id="side-navigation" class="side-navigation" aria-label="Main navigation"></nav>
+            <div class="sidebar-foot">
+                <span class="demo-dot" aria-hidden="true"></span>
+                Prototype data only
+            </div>
+        </aside>
+        <div class="sidebar-scrim" id="sidebar-scrim"></div>
+        <main class="main-panel">
+            <header class="topbar">
+                <div class="topbar-start">
+                    <button class="icon-button mobile-menu" id="mobile-menu" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <button class="icon-button collapse-menu" id="collapse-menu" type="button" aria-label="Collapse navigation" aria-pressed="false">
+                        <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
+                    </button>
+                    <div class="breadcrumb"><span>Portal</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i><strong id="breadcrumb-current">Dashboard</strong></div>
+                </div>
+                <div class="topbar-actions">
+                    <span class="demo-pill"><span class="demo-dot" aria-hidden="true"></span> DEMO</span>
+                    <div class="dropdown-wrap">
+                        <button class="icon-button notification-button" id="notification-button" type="button" aria-label="Open notifications" aria-expanded="false">
+                            <i class="fa-regular fa-bell" aria-hidden="true"></i><span class="notification-count" aria-label="2 sample notifications">2</span>
+                        </button>
+                        <div class="dropdown-panel notification-panel" id="notification-panel" hidden>
+                            <strong>Sample notifications</strong>
+                            <p>Your document request is ready for release.</p>
+                            <p>New barangay announcement posted.</p>
+                            <small>Mock notifications — no real delivery</small>
+                        </div>
+                    </div>
+                    <div class="profile-chip">
+                        <span class="avatar" id="profile-avatar">AD</span>
+                        <span class="profile-copy"><strong id="profile-name">Alex Demo</strong><small id="profile-role">Administrator</small></span>
+                    </div>
+                    <button class="button button-outline top-auth-button" type="button" data-open-auth>Auth states</button>
+                </div>
+            </header>
+            <div class="content-area">
+                <div class="page-heading">
+                    <div><p class="eyebrow" id="page-eyebrow">OVERVIEW</p><h1 id="page-title">Dashboard</h1><p id="page-description">A clear view of today’s barangay operations.</p></div>
+                    <div id="heading-actions"></div>
+                </div>
+                <div class="mock-notice" role="note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Prototype preview: all displayed records and metrics are illustrative sample data.</span></div>
+                <section id="page-content" aria-live="polite"></section>
+            </div>
+        </main>
+    </div>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <div class="modal-backdrop" id="modal-backdrop" hidden>
+        <section class="modal-card" id="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-heading"><div><p class="eyebrow" id="modal-eyebrow">PROTOTYPE ACTION</p><h2 id="modal-title"></h2></div><button class="icon-button" id="modal-close" type="button" aria-label="Close dialog"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>
+            <div id="modal-content"></div>
+        </section>
+    </div>
+</body>
+</html>

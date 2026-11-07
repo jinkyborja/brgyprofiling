@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Profiling Information Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Inline CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1e5799;
+            --primary-light: #4a86d4;
+            --secondary-color: #16457a;
+            --accent-color: #2989d8;
+            --accent-light: #5ca8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(41, 137, 216, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(30, 87, 153, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(30, 87, 153, 0.4);
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #6b7280;
+        }
+
+        .toggle-form a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-form a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .error {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 14px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 14px;
+            }
+            
+            .form-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="auth-aside">
+            <div class="brand-mark" aria-hidden="true">SI</div>
+            <p class="auth-eyebrow">BARANGAY SAN ISIDRO</p>
+            <h1>Community services, made clearer.</h1>
+            <p class="auth-intro">A secure point of access for community records and local services.</p>
+            <ul class="auth-benefits">
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Access barangay information</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Manage household records</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Connect with local services</li>
+            </ul>
+            <div class="auth-aside-footer">Barangay San Isidro Information Management System</div>
+        </aside>
+
+        <main class="auth-main">
+        <div class="form-container">
+            <!-- Login Form -->
+            <div id="login-section" class="form-section active">
+                <h2 class="form-title">Welcome back</h2>
+                <p class="auth-subtitle">Sign in to continue to your account.</p>
+                <div id="login-message" class="message" role="status" aria-live="polite" tabindex="-1"></div>
+                <form id="login-form" method="POST" action="bootstrap/login.php">
+                    <div class="form-group">
+                        <label for="login-username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="login-username" name="username" placeholder="Enter your username" autocomplete="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password"><i class="fas fa-lock"></i> Password</label>
+                        <div class="password-field">
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                            <button class="password-toggle" type="button" data-password-toggle="login-password" aria-label="Show password" aria-pressed="false"><i class="fas fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                </form>
+                <div class="loading" id="login-loading" role="status" aria-live="polite">
+                    <div class="spinner"></div>
+                    <p>Logging in...</p>
+                </div>
+                <p class="account-notice" role="status">Public account creation is temporarily closed. Please contact the barangay administrator for access.</p>
+                <a class="prototype-link" href="ui-prototype.html"><i class="fas fa-layer-group" aria-hidden="true"></i> Preview the redesigned portal prototype</a>
+                <a class="prototype-link" href="all-pages-preview.html"><i class="fas fa-list-check" aria-hidden="true"></i> Open all pages preview and QA</a>
+            </div>
+        </div>
+
+        <p class="auth-legal">© 2026 Barangay San Isidro. Use of this system is subject to local privacy policies.</p>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
