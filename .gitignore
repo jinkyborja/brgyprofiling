@@ -1,0 +1,27 @@
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+
+# Local database files and backups
+*.sql.gz
+*.sqlite
+*.sqlite3
+backups/
+
+# User-uploaded files
+uploads/
+storage/uploads/
+
+# Dependencies
+vendor/
+node_modules/
+
+# IDE and system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
