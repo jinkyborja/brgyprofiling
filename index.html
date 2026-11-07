@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Profiling Information Management System</title>
+    <title>Barangay San Isidro Information Management System — Sign In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Inline CSS -->
@@ -281,9 +281,9 @@
             <h1>Community services, made clearer.</h1>
             <p class="auth-intro">A secure point of access for community records and local services.</p>
             <ul class="auth-benefits">
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Access barangay information</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Manage household records</li>
-                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Connect with local services</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Secure access to your account</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Resident accounts reviewed by the barangay</li>
+                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Role access assigned by an administrator</li>
             </ul>
             <div class="auth-aside-footer">Barangay San Isidro Information Management System</div>
         </aside>
@@ -313,9 +313,50 @@
                     <div class="spinner"></div>
                     <p>Logging in...</p>
                 </div>
-                <p class="account-notice" role="status">Public account creation is temporarily closed. Please contact the barangay administrator for access.</p>
-                <a class="prototype-link" href="ui-prototype.html"><i class="fas fa-layer-group" aria-hidden="true"></i> Preview the redesigned portal prototype</a>
-                <a class="prototype-link" href="all-pages-preview.html"><i class="fas fa-list-check" aria-hidden="true"></i> Open all pages preview and QA</a>
+                <p class="account-notice">New resident account requests require administrator approval before sign-in.</p>
+                <p class="auth-switch">New resident? <button type="button" class="auth-switch-button" data-show-registration>Create an account</button></p>
+            </div>
+
+            <div id="registration-section" class="form-section" hidden>
+                <h2 class="form-title">Create a resident account</h2>
+                <p class="auth-subtitle">Submit a request for review by a barangay administrator.</p>
+                <div id="registration-message" class="message" role="status" aria-live="polite" tabindex="-1"></div>
+                <form id="registration-form" method="POST" action="bootstrap/registery.php">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-first-name">First name</label>
+                            <input type="text" id="register-first-name" name="first_name" autocomplete="given-name" maxlength="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-last-name">Last name</label>
+                            <input type="text" id="register-last-name" name="last_name" autocomplete="family-name" maxlength="100" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email address</label>
+                        <input type="email" id="register-email" name="email" autocomplete="email" maxlength="254" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" name="username" autocomplete="username" minlength="3" maxlength="80" pattern="[A-Za-z0-9._\-]{3,80}" aria-describedby="username-hint" required>
+                        <small class="field-hint" id="username-hint">3–80 characters: letters, numbers, periods, underscores, or hyphens.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <div class="password-field">
+                            <input type="password" id="register-password" name="password" autocomplete="new-password" minlength="12" maxlength="72" aria-describedby="password-hint" required>
+                            <button class="password-toggle" type="button" data-password-toggle="register-password" aria-label="Show password" aria-pressed="false"><i class="fas fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                        <small class="field-hint" id="password-hint">Use at least 12 characters. Passwords are stored as hashes.</small>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-user-plus" aria-hidden="true"></i> Request account</button>
+                </form>
+                <div class="loading" id="registration-loading" role="status" aria-live="polite">
+                    <div class="spinner"></div>
+                    <p>Submitting account request...</p>
+                </div>
+                <p class="account-notice">Public requests can create resident accounts only. Administrator and staff access cannot be requested here.</p>
+                <p class="auth-switch">Already have an account? <button type="button" class="auth-switch-button" data-show-login>Sign in</button></p>
             </div>
         </div>
 

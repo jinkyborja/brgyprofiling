@@ -42,4 +42,4 @@ This document maps the local mock screens to backend responsibilities. The propo
 
 ## Integration boundary
 
-The local preview pages use no PHP include, authentication endpoint, PDO connection, or MySQL query. The proposed schema has not been applied and the PHP application has not been connected to it. Review and test the schema on an isolated database first; implement secure PHP integration as a separate phase. Do not wire browser mock actions directly to production endpoints.
+The local preview pages use no PHP include, authentication endpoint, PDO connection, or MySQL query. Production login and resident account requests use separate PHP endpoints backed by the applied schema. The remaining mock actions are not production features. Do not wire browser mock actions directly to production endpoints.

@@ -1,7 +1,20 @@
 <?php
-session_start();
-session_unset();
+require_once __DIR__ . '/../server/session.php';
+startApplicationSession();
+$_SESSION = [];
+
+if (ini_get('session.use_cookies')) {
+    $cookie = session_get_cookie_params();
+    setcookie(session_name(), '', [
+        'expires' => time() - 42000,
+        'path' => $cookie['path'],
+        'domain' => $cookie['domain'],
+        'secure' => $cookie['secure'],
+        'httponly' => $cookie['httponly'],
+        'samesite' => $cookie['samesite'] ?? 'Lax',
+    ]);
+}
+
 session_destroy();
-header("HTTP/1.1 200 OK");
+http_response_code(204);
 exit();
-?>

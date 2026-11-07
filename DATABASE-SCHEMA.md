@@ -4,7 +4,7 @@
 
 This is the proposed first MySQL schema for the UI/backend work approved by the project owner. The complete DDL and baseline migration are in [`database/migrations/001_initial_schema.sql`](./database/migrations/001_initial_schema.sql).
 
-**The migration has not been run, and the PHP application has not been connected to this schema.** The current PHP configuration points to a different database, `bgry_profiling`, and its exact installed table definitions were not available for inspection. This schema therefore creates an isolated database named `barangay_san_isidro` rather than altering the legacy database. Do not change the PHP connection setting until the migration is reviewed, backed up, and integration work is separately approved.
+**The owner reports that this migration has been applied to Aiven; the application connection and schema were not independently verified in this workspace.** The production login and resident account-request endpoints use this schema. Other signed-in PHP pages still use legacy table names and columns from `bgry_profiling`; this migration does not adapt those pages or migrate legacy data.
 
 ## Requirements and safeguards
 

@@ -2,12 +2,6 @@
 $pdo = null;
 $errorMessage = null;
 
-$host = getenv('mysql-209807d4-jinkyborja.g.aivencloud.com');
-$port = getenv('21576');
-$db = getenv('defaultdb');
-$user = getenv('avnadmin');
-$pass = getenv('password');
-$sslCa = getenv('c:\Users\1\Downloads\ca (6).pem');
 
 $requiredSettings = [
     'DB_HOST' => $host,
