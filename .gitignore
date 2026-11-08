@@ -18,6 +18,11 @@ storage/uploads/
 vendor/
 node_modules/
 
+# SvelteKit and Vercel build output
+.svelte-kit/
+.vercel/
+dist/
+
 # IDE and system files
 .vscode/
 .DS_Store

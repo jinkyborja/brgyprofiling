@@ -1,5 +1,11 @@
 # Brgy-profilling
 
+## SvelteKit migration
+
+The SvelteKit application is being developed alongside the preserved PHP system. It is not yet a production replacement. See [MIGRATION-STATUS.md](./MIGRATION-STATUS.md) for the existing-system inventory, implemented routes, database constraints, validation status, and remaining work before deployment.
+
+The production and Phase 11 notes below describe the **existing PHP service** unless explicitly stated otherwise. SvelteKit routes and their separate validation status are tracked in [MIGRATION-STATUS.md](./MIGRATION-STATUS.md).
+
 ## Production and deployment status
 
 - Apache serves the root `index.html` for production login and resident account requests. Registration posts to `server/register.php`, and login uses `bootstrap/login.php`.

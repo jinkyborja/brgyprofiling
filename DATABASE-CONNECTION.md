@@ -40,3 +40,11 @@ Check:
 5. The configured database name matches the schema expected by the PHP code.
 
 The existing dashboard statistics and data modules still use the legacy `bgry_profiling` schema. They are not a drop-in match for `barangay_san_isidro`; do not consider those modules verified against the new schema.
+
+## SvelteKit and Vercel
+
+The SvelteKit application reads the same six `DB_*` names from the Node server process. For Vercel, add them to the project's **server-side Environment Variables** for each required deployment environment. Put the Aiven CA PEM contents in `DB_SSL_CA` (not a Render Secret File path); the Node connection keeps `rejectUnauthorized` enabled. Do not prefix database values with `PUBLIC_` or `VITE_`.
+
+For local SvelteKit development, copy `.env.example` to `.env`, add local-only values, and run `npm run dev`. The dev and preview scripts load that file through Node's `--env-file-if-exists` option. Never commit the filled-in `.env`. The PHP/Render service and the SvelteKit/Vercel project are separate runtimes and need their environment settings configured independently.
+
+The SvelteKit connection targets the `DB_NAME` configured for its deployment and currently expects the `barangay_san_isidro` schema plus approved additive migrations. This does not migrate or make the legacy `bgry_profiling` tables compatible.
