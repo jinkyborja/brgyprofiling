@@ -115,7 +115,11 @@ function submitForm(options) {
             try {
                 data = await response.json();
             } catch (error) {
-                throw new Error('The server returned an unexpected response. Check your connection and try again.');
+                const contentType = response.headers.get('content-type') || 'unknown content type';
+                throw new Error(
+                    'Authentication endpoint "' + options.url + '" returned a non-JSON response (HTTP ' +
+                    response.status + ', ' + contentType + '). Verify PHP is running for this site and check the server logs.'
+                );
             }
 
             if (!response.ok || data.status !== 'success') {

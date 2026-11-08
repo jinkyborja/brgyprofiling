@@ -2,6 +2,12 @@
 $pdo = null;
 $errorMessage = null;
 
+$host = getenv('DB_HOST');
+$port = getenv('DB_PORT');
+$db = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASSWORD');
+$sslCa = getenv('DB_SSL_CA');
 
 $requiredSettings = [
     'DB_HOST' => $host,
